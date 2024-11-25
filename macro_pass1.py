@@ -51,6 +51,8 @@ def process_macro_file(file_name):
                     macro_name = ""
                     kpdtab_index = len(kpdtab_list)
                     sstab_index = len(sstab_list)
+                    pos_params = 0
+                    key_params = 0
                     continue
 
                 if is_macro:
