@@ -27,7 +27,7 @@ for line in lines:
         lc = int(parts[1])
         continue
     if parts[0] == "END":
-        intermediate_code.append((lc, "(AD,4)"))
+        intermediate_code.append((lc-1, "(AD,4)"))
         continue
     
     if ':' in line:

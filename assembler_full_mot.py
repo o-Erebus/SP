@@ -22,7 +22,11 @@ for line in lines:
     parts = line.replace(',', ' ').split()
     
     if parts[0] == 'START':
+        intermediate_code.append((lc, f"(AD,0) (C,{parts[1]})"))
         lc = int(parts[1])
+        continue
+    if parts[0] == "END":
+        intermediate_code.append((lc-1, "(AD,4)"))
         continue
         
     if ':' in line:
@@ -83,26 +87,31 @@ if errors:
     for error in errors:
         print(error)
 
-machine_code = []
+machine_code=[]
 for inst in intermediate_code: 
     parts = inst[1].split()
     p1 = f"{inst[0]} |"
-    for i, part in enumerate(parts):
-        part = part.replace("(", "")
-        part = part.replace(")", "")
-        if "IS," in part:
-            p1 += f"{part.replace('IS,', '')} "
+    for i,part in enumerate(parts):
+        part = part.replace("(","")
+        part = part.replace(")","")
+        if "AD,4" in part or "AD,0" in part:
+            p1 = ""
+            break
+        elif "IS," in part:
+            p1 += f"{part.replace("IS,","")} "
         elif "S," in part:
             p1 += f"[{symbol_table[int(part.split(',')[1])][1]}] "
         elif "R," in part:
-            p1 += f"{part.replace('R,', '')} "
+            p1 += f"{part.replace("R,","")} "
+        
         elif "AD,1" in part:
             p1 += "-"
-            parts[i + 1] = ""
+            parts[i+1] = ""
         elif "AD,2" in part:
-            p1 += part.replace('AD,2', "")
+            p1 += part.replace("AD,2","")
         elif "C,":
-            p1 += f"{part.replace('C,', '')}"
+            p1 += f"{part.replace("C,","")}"
+        
     machine_code.append(p1)    
 
 print("\nMachine Code:\n")
@@ -110,3 +119,4 @@ print("LC   | Machine Code")
 print("-" * 30)
 for line in machine_code:
     print(line)
+
