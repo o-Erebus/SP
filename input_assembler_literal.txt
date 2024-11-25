@@ -1,0 +1,6 @@
+START 100
+MOV AX, "5"
+ADD BX, "10"
+LTORG
+MOV CX, "20"
+END

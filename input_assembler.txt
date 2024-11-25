@@ -1,0 +1,9 @@
+START 1000
+S1:  MOV AX, BX
+        ADD CX, 1
+        JMP S1
+LABEL1: SUB DX, VAR1
+        RET
+VAR1:   DS 10
+VAR2:   DC 5
+END
