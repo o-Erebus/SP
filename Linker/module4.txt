@@ -1,0 +1,14 @@
+START             ; Start of module 4
+VAR_D: DC 20
+VAR_E: DC 10
+ENTRY VAR_D       ; Declares VAR_D as a public symbol
+ENTRY VAR_E       ; Declares VAR_E as a public symbol
+
+MOV R1, VAR_D      ; Address-sensitive instruction using a public symbol
+SUB R2, VAR_E      ; Address-sensitive instruction
+ADD VAR_D, VAR_E
+ENTRY FUNC_4      ; Declares FUNC_4 as a public function
+JMP FUNC_4         ; Address-sensitive instruction to a public function
+FUNC_4: MUL R1, R2 ; Label
+DIV R3, 2
+END                ; End of module 4

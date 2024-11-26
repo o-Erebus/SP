@@ -1,0 +1,13 @@
+START              ; Start of module 1
+VAR_A: DS 10
+ENTRY VAR_A         ; Declares VAR_A as a public symbol
+ENTRY FUNC_1
+MOV R1, 150
+ADD R1, R2
+JMP FUNC1           ; Address-sensitive instruction
+EXTERN VAR_B        ; References an external symbol VAR_B
+ADD R3, VAR_B       ; Uses the external symbol
+ADD VAR_A, VAR_B
+FUNC1: SUB R2, 30  ; Label
+MOV R4, VAR_A       ; Uses the public symbol VAR_A
+END                 ; End of module 1

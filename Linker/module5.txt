@@ -1,0 +1,12 @@
+START            ; Start of module 5
+VAR_F: DC 40
+ENTRY VAR_F       ; Declares VAR_F as a public symbol
+ENTRY FUNC_5      ; Declares FUNC_5 as a public function
+MOV R5, VAR_F      ; Address-sensitive instruction using a public symbol
+EXTERN VAR_C       ; References an external symbol VAR_C
+ADD R6, VAR_C      ; Uses the external symbol VAR_C
+ADD VAR_F, VAR_C
+JMP FUNC_5         ; Address-sensitive instruction to a public function
+FUNC_5: DEC R5     ; Label
+MOV R7, R8
+END                ; End of module 5

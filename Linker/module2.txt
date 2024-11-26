@@ -1,0 +1,14 @@
+START        ; Start of module 2
+VAR_B: DC 20
+ENTRY VAR_B         ; Declares VAR_B as a public symbol
+ENTRY FUNC_2
+MOV R5, 250
+ADD R5, VAR_B       ; Address-sensitive instruction
+EXTERN VAR_A        ; References an external symbol VAR_A
+JMP FUNC2           ; Address-sensitive instruction
+MOV R6, VAR_A       ; Uses the external symbol VAR_A
+FUNC2: DEC R5       ; Label
+EXTERN VAR_C        ; References an external symbol VAR_C
+ADD VAR_B, VAR_C
+MOV R7, VAR_C       ; Uses the external symbol VAR_C
+END                 ; End of module 2

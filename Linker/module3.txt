@@ -1,0 +1,13 @@
+START            ; Start of module 3
+VAR_C: DC 30
+ENTRY VAR_C         ; Declares VAR_C as a public symbol
+ENTRY FUNC_3
+MOV R8, VAR_C       ; Address-sensitive instruction using a public symbol
+ADD R8, 70
+EXTERN VAR_B        ; References an external symbol VAR_B
+SUB R9, VAR_B       ; Uses the external symbol VAR_B
+ADD VAR_B, VAR_C
+JMP FUNC3           ; Address-sensitive instruction
+FUNC3: INC R9       ; Label
+MOV R10, R11
+END                 ; End of module 3
